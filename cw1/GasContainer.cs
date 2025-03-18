@@ -33,4 +33,9 @@ public class GasContainer : Container{
         Console.WriteLine("Numer kontenera: " + SerialNumber);
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return base.ToString() + " Pressure: " + Pressure;
+    }
 }

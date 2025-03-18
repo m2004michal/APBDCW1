@@ -17,6 +17,13 @@
 
     public virtual void Offload() {}
 
+    public virtual bool ValidateLoading(Container? container)
+    {
+        return true;
+    }
+    
+    
+
     private protected bool PerformBasicValidation()
     {
         bool result = CargoWeight < MaxCapacity;
@@ -26,6 +33,11 @@
             throw new OverfillException();
         }
         return result;
+    }
+
+    public override string ToString()
+    {
+        return "Cargo Weight: " + CargoWeight + " Height : " + Height + " Depth: " + Depth + " Serial Number: " + SerialNumber + " Max Capacity: " + MaxCapacity;
     }
 }
 

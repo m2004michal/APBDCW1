@@ -75,4 +75,52 @@ public class ContainerShip
             Console.WriteLine("Replace failed");
         }
     }
+
+    public void SwapContainers(string containerFromFirstShipId, string containerFromSecondShipId, ContainerShip containerShip)
+    {
+        Container? containerFromFirstShip = Containers.Find((container => container?.SerialNumber == containerFromFirstShipId));
+        Container? containerFromSecondShip = containerShip.Containers.Find((container => container?.SerialNumber == containerFromSecondShipId));
+        
+        if (containerFromFirstShip != null) 
+            DeleteContainer(containerFromFirstShip.SerialNumber);
+        if (containerFromSecondShip != null)
+            containerShip.DeleteContainer(containerFromSecondShip.SerialNumber);
+        if (CanSwapContainers(containerFromFirstShip, containerFromSecondShip, containerShip))
+        {
+            LoadContainer(containerFromSecondShip);
+            containerShip.LoadContainer(containerFromFirstShip);
+            Console.WriteLine("Swapped successfuly");
+        } else
+        {
+            LoadContainer(containerFromFirstShip);
+            containerShip.LoadContainer(containerFromSecondShip);
+            Console.WriteLine("Loading failed");
+        }
+    }
+
+    public bool CanSwapContainers(Container? containerFromFirstShip, Container? containerFromSecondShip, ContainerShip containerShip)
+    {
+        if (containerFromFirstShip == null || containerFromSecondShip == null)
+        {
+            return false;
+        }
+
+        if (!ValidateLoading(containerFromSecondShip))
+        {
+            return false;
+        }
+
+        if (!containerShip.ValidateLoading(containerFromFirstShip))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void printContainers()
+    {
+        Containers.ForEach((container => Console.Write(container.ToString() + "; ")));
+    }
+
 }

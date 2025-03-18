@@ -43,4 +43,9 @@ public class FluidContainer : Container, IHazardNotifier  {
         Console.WriteLine("Numer kontenera: " + SerialNumber);
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return base.ToString() + "IsCargoHazard" + IsCargoHazard.ToString();
+    }
 }

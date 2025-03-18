@@ -11,6 +11,7 @@ public class MainClass {
         
         GasContainer? gasContainer = new GasContainer(2,300, 12, "KON-G-2", 4000);
         gasContainer.Load(3000, 30);
+
         Console.WriteLine("cargo weight = " + gasContainer.CargoWeight);
         // gasContainer.Offload();
         // Console.WriteLine("cargo weight = " + gasContainer.CargoWeight);
@@ -38,7 +39,25 @@ public class MainClass {
         Console.WriteLine();
         containerShip2.ReplaceContainer(fluidContainer, "KON-G-2");
         containerShip2.Containers.ForEach(Console.WriteLine);
-
+        
+        
+        // containers swap
+        Console.WriteLine();
+        Console.WriteLine("containers swap");
+        ContainerShip containerShip3 = new ContainerShip(10, 2, 10000);
+        GasContainer? gasContainer2 = new GasContainer(2,300, 12, "KON-G-4", 4000);
+        gasContainer2.Load(700, 30);
+        containerShip3.LoadContainer(gasContainer2);
+        
+        ContainerShip containerShip4 = new ContainerShip(10, 2, 10000);
+        GasContainer? gasContainer3 = new GasContainer(2,300, 12, "KON-G-5", 4000);
+        gasContainer3.Load(3000, 30);
+        containerShip4.LoadContainer(gasContainer3);
+        containerShip3.SwapContainers("KON-G-4", "KON-G-5", containerShip4);
+        containerShip3.printContainers();
+        Console.WriteLine();
+        containerShip4.printContainers();
+        
     }
     
 }
