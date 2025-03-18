@@ -120,7 +120,7 @@ public class ContainerShip
 
     public void PrintContainers()
     {
-        Containers.ForEach((container => Console.Write(container.ToString() + "; ")));
+        Containers.ForEach((container => Console.Write(container?.ToString() + "; ")));
     }
 
     public void PrintInformation()

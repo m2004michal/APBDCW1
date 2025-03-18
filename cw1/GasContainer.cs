@@ -4,7 +4,7 @@ public class GasContainer : Container{
     
     private protected double? Pressure {get;set;}
 
-    public GasContainer(double height, double conteinerWeigth, double depth, string serialNumber, double maxCapacity) : base(height, conteinerWeigth, depth, serialNumber, maxCapacity) {
+    public GasContainer(double height, double conteinerWeigth, double depth, double maxCapacity) : base(height, conteinerWeigth, depth, "G", maxCapacity) {
     }
 
     public override void Offload() {

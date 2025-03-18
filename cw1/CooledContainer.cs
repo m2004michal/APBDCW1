@@ -6,7 +6,8 @@ public class CooledContainer : Container, IHazardNotifier
     private protected string ProductName{ get; set; }
     private protected double Temperature{ get; set; }
 
-    public CooledContainer(double height, double conteinerWeigth, double depth, string serialNumber, double maxCapacity, string productName, double temperature) : base(height, conteinerWeigth, depth, serialNumber, maxCapacity)
+    public CooledContainer(double height, double conteinerWeigth, double depth, double maxCapacity, string productName, double temperature)
+        : base(height, conteinerWeigth, depth, "C", maxCapacity)
     {
         ProductName = productName;
         Temperature = temperature;

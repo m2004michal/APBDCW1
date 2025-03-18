@@ -5,7 +5,7 @@ public class FluidContainer : Container, IHazardNotifier  {
     private protected bool? IsCargoHazard {get;set;}
 
     public FluidContainer(double height, double conteinerWeigth,
-        double depth, string serialNumber, double maxCapacity) : base(height, conteinerWeigth, depth, serialNumber, maxCapacity) {
+        double depth, double maxCapacity) : base(height, conteinerWeigth, depth, "L", maxCapacity) {
     }
 
     public override void Offload() {
