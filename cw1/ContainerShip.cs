@@ -34,7 +34,7 @@ public class ContainerShip
 
     public bool ValidateLoading(Container? container)
     {
-        if (GetLoadedContainersWeight() + container.ContainerWeight + container.CargoWeight > MaximumContainersWeight)
+        if (GetLoadedContainersWeight() + container?.ContainerWeight + container?.CargoWeight > MaximumContainersWeight * 1000)
         {
             Console.WriteLine("Przekroczono maksymalna wage załadunku");
             return false;
@@ -118,9 +118,20 @@ public class ContainerShip
         return true;
     }
 
-    public void printContainers()
+    public void PrintContainers()
     {
         Containers.ForEach((container => Console.Write(container.ToString() + "; ")));
     }
 
+    public void PrintInformation()
+    {
+        Console.WriteLine(this.ToString());
+    }
+
+    public override string ToString()
+    {
+        string toReturn =  " MaxSpeed: " + MaxSpeed + "kts MaximumContainersAmount: " + MaximumContainersAmount + " MaximumContainersWeight: " + MaximumContainersWeight + "t Cargo: " ;
+        Containers.ForEach((container => toReturn += (container?.ToString() + "; ")));
+        return toReturn;
+    }
 }

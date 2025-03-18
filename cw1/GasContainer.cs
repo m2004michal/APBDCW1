@@ -34,8 +34,13 @@ public class GasContainer : Container{
         throw new NotImplementedException();
     }
 
+    public void PrintInformation()
+    {
+        Console.WriteLine(this.ToString());
+    }
+    
     public override string ToString()
     {
-        return base.ToString() + " Pressure: " + Pressure;
+        return base.ToString() + " Pressure: " + Pressure + "atmospheres ";
     }
 }

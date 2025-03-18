@@ -37,6 +37,11 @@ public class CooledContainer : Container, IHazardNotifier
         Console.WriteLine("Opis sytuacji: " + situationDescription);
         Console.WriteLine("Numer kontenera: " + SerialNumber);
     }
+    
+    public void PrintInformation()
+    {
+        Console.WriteLine(this.ToString());
+    }
 
     public override string ToString()
     {

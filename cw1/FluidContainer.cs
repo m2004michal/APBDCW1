@@ -44,6 +44,11 @@ public class FluidContainer : Container, IHazardNotifier  {
         throw new NotImplementedException();
     }
 
+    public void PrintInformation()
+    {
+        Console.WriteLine(this.ToString());
+    }
+    
     public override string ToString()
     {
         return base.ToString() + "IsCargoHazard" + IsCargoHazard.ToString();

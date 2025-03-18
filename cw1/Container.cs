@@ -37,7 +37,8 @@
 
     public override string ToString()
     {
-        return "Cargo Weight: " + CargoWeight + " Height : " + Height + " Depth: " + Depth + " Serial Number: " + SerialNumber + " Max Capacity: " + MaxCapacity;
+        return "Cargo Weight: " + CargoWeight + "kg Height : " + Height + "cm Depth: " + Depth + "cm Serial Number: " + SerialNumber + " Max Capacity: " + MaxCapacity + "kg " + "ContainerWeight " +
+               ContainerWeight + "kg ";
     }
 }
 
