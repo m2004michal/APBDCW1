@@ -32,8 +32,13 @@ public class MainClass {
         containers.Add(fluidContainer);
         containerShip2.LoadContainers(containers);
         containerShip2.Containers.ForEach(Console.WriteLine);
-        containerShip2.deleteContainer("KON-C-3");
+        Console.WriteLine();
+        containerShip2.DeleteContainer("KON-C-3");
         containerShip2.Containers.ForEach(Console.WriteLine);
+        Console.WriteLine();
+        containerShip2.ReplaceContainer(fluidContainer, "KON-G-2");
+        containerShip2.Containers.ForEach(Console.WriteLine);
+
     }
     
 }

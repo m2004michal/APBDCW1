@@ -51,12 +51,28 @@ public class ContainerShip
 
     public double? GetLoadedContainersWeight() {
         double? weight = 0;
-        Containers.ForEach((container => weight += container.CargoWeight + container.ContainerWeight));
+        Containers.ForEach((container => weight += container?.CargoWeight + container.ContainerWeight));
         return weight;
     }
 
-    public void deleteContainer(string containerId)
+    public void DeleteContainer(string containerId)
     {
-        Containers.Remove(Containers.Find((container => container.SerialNumber == containerId)));
+        Containers.Remove(Containers.Find((container => container?.SerialNumber == containerId)));
+    }
+    
+    public void ReplaceContainer(Container container, string containerId)
+    {
+        Container oldContainer = Containers.Find((container => container?.SerialNumber == containerId));
+        Containers.Remove(oldContainer);
+        if (ValidateLoading(container) && oldContainer != null)
+        {
+            Containers.Add(container);
+            Console.WriteLine("Replaced successfuly");
+        }
+        else
+        {
+            Containers.Add(oldContainer);
+            Console.WriteLine("Replace failed");
+        }
     }
 }

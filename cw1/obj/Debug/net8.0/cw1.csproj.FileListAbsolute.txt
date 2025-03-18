@@ -12,3 +12,4 @@ C:\Users\s30750\RiderProjects\cw1\cw1\obj\Debug\net8.0\refint\cw1.dll
 C:\Users\s30750\RiderProjects\cw1\cw1\obj\Debug\net8.0\cw1.pdb
 C:\Users\s30750\RiderProjects\cw1\cw1\obj\Debug\net8.0\cw1.genruntimeconfig.cache
 C:\Users\s30750\RiderProjects\cw1\cw1\obj\Debug\net8.0\ref\cw1.dll
+C:\Users\s30750\RiderProjects\cw1\cw1\obj\Debug\net8.0\cw1.sourcelink.json
