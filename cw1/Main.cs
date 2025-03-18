@@ -4,44 +4,54 @@ public class MainClass
 {
     private static void Main(string[] args)
     {
+        // Stworzenie kontenera danego typu
+        Console.WriteLine("Stworzenie kontenera danego typu");
         var fluidContainer = new FluidContainer(2, 300, 12, 4000);
+        Console.WriteLine();
+
+        // Załadowanie ładunku do danego kontenera
+        Console.WriteLine("Załadowanie ładunku do danego kontenera");
         fluidContainer.Load(3000, false);
         Console.WriteLine("cargo weight = " + fluidContainer.CargoWeight);
-        // fluidContainer.Offload();
-        // Console.WriteLine("cargo weight = " + fluidContainer.CargoWeight);
+        Console.WriteLine();
 
+        // Załadowanie kontenera na statek
+        Console.WriteLine("Załadowanie kontenera na statek");
+        var containerShip = new ContainerShip(10, 66, 1000);
+        containerShip.LoadContainer(fluidContainer);
+        Console.WriteLine();
+
+        // Załadowanie listy kontenerów na statek
+        Console.WriteLine("Załadowanie listy kontenerów na statek");
+        var containers = new List<Container?>();
         var gasContainer = new GasContainer(2, 300, 12, 4000);
-        gasContainer.Load(3000, 30);
-
-        Console.WriteLine("cargo weight = " + gasContainer.CargoWeight);
-        // gasContainer.Offload();
-        // Console.WriteLine("cargo weight = " + gasContainer.CargoWeight);
-
         var cooledContainer = new CooledContainer(2, 300, 12, 4000, "Banana", 10);
         cooledContainer.Load(3000, "Banana", 11);
-        Console.WriteLine("cargo weight = " + cooledContainer.CargoWeight);
-        // cooledContainer.Offload();
-        // Console.WriteLine("cargo weight = " + cooledContainer.CargoWeight);
-
-        var containerShip = new ContainerShip(10, 2, 1000);
-        containerShip.LoadContainer(fluidContainer);
-        containerShip.LoadContainer(gasContainer);
-        containerShip.LoadContainer(cooledContainer);
-        var containerShip2 = new ContainerShip(10, 2, 1000);
-        var containers = new List<Container?>();
+        gasContainer.Load(3000, 30);
         containers.Add(cooledContainer);
         containers.Add(gasContainer);
         containers.Add(fluidContainer);
-        containerShip2.LoadContainers(containers);
-        containerShip2.Containers.ForEach(Console.WriteLine);
+        containerShip.LoadContainers(containers);
         Console.WriteLine();
-        containerShip2.DeleteContainer("KON-C-3");
-        containerShip2.Containers.ForEach(Console.WriteLine);
+       
+        // Usunięcie kontenera ze statku
+        Console.WriteLine("Usunięcie kontenera ze statku");
+        containerShip.DeleteContainer("KON-L-4");
         Console.WriteLine();
-        containerShip2.ReplaceContainer(fluidContainer, "KON-G-2");
-        containerShip2.Containers.ForEach(Console.WriteLine);
+        
+        //  Rozładowanie kontenera
+        Console.WriteLine("Rozładowanie kontenera");
+        var cooledContainer2 = new CooledContainer(2, 300, 12, 4000, "Banana", 10);
+        cooledContainer2.Load(3000, "Banana", 11);
+        cooledContainer2.Offload();
+        cooledContainer2.Load(3000, "Cheese", 11);
+        Console.WriteLine();
 
-
+        // Zastąpienie kontenera na statku o danym numerze innym kontenerem
+        Console.WriteLine("Zastąpienie kontenera na statku o danym numerze innym kontenerem");
+        containerShip.ReplaceContainer(cooledContainer2, "KON-C-3");
+        Console.WriteLine();
+        
         // Możliwość przeniesienie kontenera między dwoma statkami
         Console.WriteLine();
         Console.WriteLine("Możliwość przeniesienie kontenera między dwoma statkami");
@@ -49,7 +59,6 @@ public class MainClass
         var gasContainer2 = new GasContainer(2, 300, 12, 4000);
         gasContainer2.Load(700, 30);
         containerShip3.LoadContainer(gasContainer2);
-
         var containerShip4 = new ContainerShip(10, 2, 10);
         var gasContainer3 = new GasContainer(2, 300, 12, 4000);
         gasContainer3.Load(3000, 30);

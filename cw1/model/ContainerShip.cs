@@ -61,6 +61,7 @@ public class ContainerShip
     public void DeleteContainer(string containerId)
     {
         Containers.Remove(Containers.Find(container => container?.SerialNumber == containerId));
+        Console.WriteLine($"Container {containerId} deleted");
     }
 
     public void ReplaceContainer(Container container, string containerId)
