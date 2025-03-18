@@ -24,11 +24,6 @@
     {
     }
 
-    public virtual bool ValidateLoading(Container? container)
-    {
-        return true;
-    }
-
     private protected bool PerformBasicValidation()
     {
         var result = CargoWeight < MaxCapacity;
