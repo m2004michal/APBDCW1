@@ -2,12 +2,6 @@ namespace cw1;
 
 public class ContainerShip
 {
-
-    public List<Container?> Containers { get; set; } = new List<Container?>();
-    public double MaxSpeed { get; set; }
-    public int MaximumContainersAmount { get; private set; }
-    public double MaximumContainersWeight { get; set; }
-
     public ContainerShip(double maxSpeed, int maximumContainersAmount, double maximumContainersWeight)
     {
         MaxSpeed = maxSpeed;
@@ -15,7 +9,13 @@ public class ContainerShip
         MaximumContainersWeight = maximumContainersWeight;
     }
 
-    public void LoadContainer(Container? container) {
+    public List<Container?> Containers { get; set; } = new();
+    public double MaxSpeed { get; set; }
+    public int MaximumContainersAmount { get; }
+    public double MaximumContainersWeight { get; set; }
+
+    public void LoadContainer(Container? container)
+    {
         if (ValidateLoading(container))
         {
             Console.WriteLine("Loading successful");
@@ -27,14 +27,16 @@ public class ContainerShip
         }
     }
 
-    public void LoadContainers(List<Container?> containers) {
+    public void LoadContainers(List<Container?> containers)
+    {
         containers.ForEach(LoadContainer);
     }
 
 
     public bool ValidateLoading(Container? container)
     {
-        if (GetLoadedContainersWeight() + container?.ContainerWeight + container?.CargoWeight > MaximumContainersWeight * 1000)
+        if (GetLoadedContainersWeight() + container?.ContainerWeight + container?.CargoWeight >
+            MaximumContainersWeight * 1000)
         {
             Console.WriteLine("Przekroczono maksymalna wage załadunku");
             return false;
@@ -49,20 +51,21 @@ public class ContainerShip
         return true;
     }
 
-    public double? GetLoadedContainersWeight() {
+    public double? GetLoadedContainersWeight()
+    {
         double? weight = 0;
-        Containers.ForEach((container => weight += container?.CargoWeight + container.ContainerWeight));
+        Containers.ForEach(container => weight += container?.CargoWeight + container.ContainerWeight);
         return weight;
     }
 
     public void DeleteContainer(string containerId)
     {
-        Containers.Remove(Containers.Find((container => container?.SerialNumber == containerId)));
+        Containers.Remove(Containers.Find(container => container?.SerialNumber == containerId));
     }
-    
+
     public void ReplaceContainer(Container container, string containerId)
     {
-        Container oldContainer = Containers.Find((container => container?.SerialNumber == containerId));
+        var oldContainer = Containers.Find(container => container?.SerialNumber == containerId);
         Containers.Remove(oldContainer);
         if (ValidateLoading(container) && oldContainer != null)
         {
@@ -76,12 +79,14 @@ public class ContainerShip
         }
     }
 
-    public void SwapContainers(string containerFromFirstShipId, string containerFromSecondShipId, ContainerShip containerShip)
+    public void SwapContainers(string containerFromFirstShipId, string containerFromSecondShipId,
+        ContainerShip containerShip)
     {
-        Container? containerFromFirstShip = Containers.Find((container => container?.SerialNumber == containerFromFirstShipId));
-        Container? containerFromSecondShip = containerShip.Containers.Find((container => container?.SerialNumber == containerFromSecondShipId));
-        
-        if (containerFromFirstShip != null) 
+        var containerFromFirstShip = Containers.Find(container => container?.SerialNumber == containerFromFirstShipId);
+        var containerFromSecondShip =
+            containerShip.Containers.Find(container => container?.SerialNumber == containerFromSecondShipId);
+
+        if (containerFromFirstShip != null)
             DeleteContainer(containerFromFirstShip.SerialNumber);
         if (containerFromSecondShip != null)
             containerShip.DeleteContainer(containerFromSecondShip.SerialNumber);
@@ -90,7 +95,8 @@ public class ContainerShip
             LoadContainer(containerFromSecondShip);
             containerShip.LoadContainer(containerFromFirstShip);
             Console.WriteLine("Swapped successfuly");
-        } else
+        }
+        else
         {
             LoadContainer(containerFromFirstShip);
             containerShip.LoadContainer(containerFromSecondShip);
@@ -98,40 +104,33 @@ public class ContainerShip
         }
     }
 
-    public bool CanSwapContainers(Container? containerFromFirstShip, Container? containerFromSecondShip, ContainerShip containerShip)
+    public bool CanSwapContainers(Container? containerFromFirstShip, Container? containerFromSecondShip,
+        ContainerShip containerShip)
     {
-        if (containerFromFirstShip == null || containerFromSecondShip == null)
-        {
-            return false;
-        }
+        if (containerFromFirstShip == null || containerFromSecondShip == null) return false;
 
-        if (!ValidateLoading(containerFromSecondShip))
-        {
-            return false;
-        }
+        if (!ValidateLoading(containerFromSecondShip)) return false;
 
-        if (!containerShip.ValidateLoading(containerFromFirstShip))
-        {
-            return false;
-        }
+        if (!containerShip.ValidateLoading(containerFromFirstShip)) return false;
 
         return true;
     }
 
     public void PrintContainers()
     {
-        Containers.ForEach((container => Console.Write(container?.ToString() + "; ")));
+        Containers.ForEach(container => Console.Write(container + "; "));
     }
 
     public void PrintInformation()
     {
-        Console.WriteLine(this.ToString());
+        Console.WriteLine(ToString());
     }
 
     public override string ToString()
     {
-        string toReturn =  " MaxSpeed: " + MaxSpeed + "kts MaximumContainersAmount: " + MaximumContainersAmount + " MaximumContainersWeight: " + MaximumContainersWeight + "t Cargo: " ;
-        Containers.ForEach((container => toReturn += (container?.ToString() + "; ")));
+        var toReturn = " MaxSpeed: " + MaxSpeed + "kts MaximumContainersAmount: " + MaximumContainersAmount +
+                       " MaximumContainersWeight: " + MaximumContainersWeight + "t Cargo: ";
+        Containers.ForEach(container => toReturn += container + "; ");
         return toReturn;
     }
 }

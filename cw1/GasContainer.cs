@@ -1,18 +1,22 @@
 namespace cw1;
 
-public class GasContainer : Container{
-    
-    private protected double? Pressure {get;set;}
-
-    public GasContainer(double height, double conteinerWeigth, double depth, double maxCapacity) : base(height, conteinerWeigth, depth, "G", maxCapacity) {
+public class GasContainer : Container
+{
+    public GasContainer(double height, double conteinerWeigth, double depth, double maxCapacity) : base(height,
+        conteinerWeigth, depth, "G", maxCapacity)
+    {
     }
 
-    public override void Offload() {
+    private protected double? Pressure { get; set; }
+
+    public override void Offload()
+    {
         Pressure = null;
         CargoWeight *= 0.05;
     }
 
-    public void Load(double cargoWeight, double pressure) {
+    public void Load(double cargoWeight, double pressure)
+    {
         CargoWeight = cargoWeight;
         Pressure = pressure;
         if (ValidateLoading()) return;
@@ -20,14 +24,14 @@ public class GasContainer : Container{
         Pressure = null;
     }
 
-    private bool ValidateLoading() {
-        if (!PerformBasicValidation()) {
-            return false;
-        }
+    private bool ValidateLoading()
+    {
+        if (!PerformBasicValidation()) return false;
         return true;
     }
 
-    public void Notify(string situationDescription) {
+    public void Notify(string situationDescription)
+    {
         Console.WriteLine("Zaszła niebezpieczna sytuacja. ");
         Console.WriteLine("Opis sytuacji: " + situationDescription);
         Console.WriteLine("Numer kontenera: " + SerialNumber);
@@ -36,9 +40,9 @@ public class GasContainer : Container{
 
     public void PrintInformation()
     {
-        Console.WriteLine(this.ToString());
+        Console.WriteLine(ToString());
     }
-    
+
     public override string ToString()
     {
         return base.ToString() + " Pressure: " + Pressure + "atmospheres ";
