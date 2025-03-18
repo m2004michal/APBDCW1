@@ -10,8 +10,8 @@ public class CooledContainer : Container, IHazardNotifier
         Temperature = temperature;
     }
 
-    private protected string ProductName { get; set; }
-    private protected double Temperature { get; set; }
+    private protected string ProductName { get;}
+    private protected double Temperature { get;}
 
     public void Notify(string situationDescription)
     {

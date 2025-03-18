@@ -9,10 +9,10 @@ public class ContainerShip
         MaximumContainersWeight = maximumContainersWeight;
     }
 
-    public List<Container?> Containers { get; set; } = new();
-    public double MaxSpeed { get; set; }
+    public List<Container?> Containers { get;} = new();
+    public double MaxSpeed { get;}
     public int MaximumContainersAmount { get; }
-    public double MaximumContainersWeight { get; set; }
+    public double MaximumContainersWeight { get;}
 
     public void LoadContainer(Container? container)
     {

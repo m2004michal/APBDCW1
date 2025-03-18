@@ -14,11 +14,11 @@
     }
 
     public double? CargoWeight { get; set; }
-    public double Height { get; set; }
-    public double ContainerWeight { get; set; }
-    public double Depth { get; set; }
-    public string SerialNumber { get; set; }
-    public double MaxCapacity { get; set; }
+    public double Height { get;}
+    public double ContainerWeight { get;}
+    public double Depth { get;}
+    public string SerialNumber { get;}
+    public double MaxCapacity { get;}
 
     public virtual void Offload()
     {
